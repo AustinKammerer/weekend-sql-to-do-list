@@ -1,20 +1,22 @@
-[ ] database.sql
-[ ] node_modules (npm init --yes, npm install express, npm install body-parser, npm install pg)
-[ ] server
-    [ ] modules
-        [ ] pool.js
-    [ ] routes
-        [ ] tasks.router.js
-    [ ] public
-        [ ] css
-            [ ] style.css
-            [ ] bootstrap
-        [ ] scripts
-            [ ] client.js
-        [ ] vendors
-            [ ] JQ
-        [ ] index.html
- [ ] .gitignore
+FILE SYSTEM SETUP
+
+[x] database.sql
+[x] node_modules (npm init --yes, npm install express, npm install body-parser, npm install pg)
+[x] server
+    [x] modules
+        [x] pool.js
+    [x] routes
+        [x] tasks.router.js
+    [x] public
+        [x] css
+            [x] style.css
+            [x] bootstrap
+        [x] scripts
+            [x] client.js
+        [x] vendors
+            [x] JQ
+        [x] index.html
+ [x] .gitignore
     .DS_Store
     package-lock.json
     node_modules/
