@@ -1,0 +1,81 @@
+HTML WIREFRAME
+    [ ] Inputs
+        [ ] task name
+        [ ] task notes
+        [ ] date/time completed (only appears when marking complete)
+    [ ] Submit Button
+            
+
+DATABASE todo-list
+    [ ] table - "todos"
+    [ ] columns
+        [ ] task
+        [ ] notes
+        [ ] is_complete
+        [ ] date_completed
+    [ ] .sql file 
+        [ ] CREATE
+        [ ] INSERT INTO ... VALUES
+
+BACK END 
+    [ ] server
+        [ ] import express
+        [ ] import body-parser
+        [ ] import router
+    [ ] pool module
+        [ ] import pg
+    [ ] routes folder
+        [ ] tasks.router ('/tasks)
+            [ ] import pg
+            [ ] '/'
+                [ ] GET (SELECT)
+                [ ] POST (INSERT INTO)
+            [ ] '/:id'
+                [ ] PUT (UPDATE...SET) - for marking complete, will also recieve req containing time/date completed (STRETCH)
+                [ ] DELETE (DELETE)
+            
+
+FRONT END
+    [ ] initialize DOM
+        [ ] GET request for data at '/tasks'
+    [ ] render function
+        [ ] add data to a table
+            [ ] connect id via .data
+            [ ] delete button
+                [ ] listener calls DELETE request
+            [ ] complete button
+                [ ] listener calls PUT request
+            [ ] undo button??
+                [ ] listener calls the same PUT request
+    [ ] Submit button click listener
+        [ ] function will collect inputs 
+        [ ] and send them to server via POST
+    [ ] GET request function '/tasks'
+    [ ] POST request function '/tasks'
+        [ ] data: {name, notes, isComplete: false} (some values can be null in DB)
+        [ ] clear inputs
+    [ ] DELETE request function '/tasks/:id'
+    [ ] PUT request function '/tasks/:id'
+        [ ] option to undo task??
+            [ ] in that case, data {isComplete: true/false} is needed
+
+
+STRETCH MODE - PRACTICE BRANCHING AND MERGING
+    [ ] feature-styling-bootstrap
+        [ ] Add Bootstrap to the front end and style it up!
+        [ ] Buttons -- make the creation buttons and completion buttons green and the delete red.
+        [ ] Inputs -- make your text inputs styled in the bootstrap way
+        [ ] Responsive -- make your app responsive to different screen sizes -- check out the [Layout](https://getbootstrap.com/docs/4.1/layout/overview/) section
+
+    [ ] feature-sort-task-query
+        [ ]  Research [Query Params](https://expressjs.com/en/api.html#req.query) to have the request reverse the order of the returned todos
+        [ ] '/sort'
+                [ ] use query params with a GET to sort the list
+                [ ] GET (SELECT...SORT BY)
+
+    [ ] feature-confirm-delete
+        [ ] In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task.
+        [ ] Some styled options are [Bootstrap Modal](https://getbootstrap.com/docs/4.0/components/modal/) or [Sweet Alerts](https://sweetalert.js.org/guides/): Use the CDN option.
+
+    [ ] feature-time-completed
+        [ ]  Add the ability to record when a task was completed. Show the completed date on the frontend in a pretty format.
