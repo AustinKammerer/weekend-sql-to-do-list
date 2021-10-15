@@ -1,3 +1,32 @@
+[ ] database.sql
+[ ] node_modules (npm init --yes, npm install express, npm install body-parser, npm install pg)
+[ ] server
+    [ ] modules
+        [ ] pool.js
+    [ ] routes
+        [ ] tasks.router.js
+    [ ] public
+        [ ] css
+            [ ] style.css
+            [ ] bootstrap
+        [ ] scripts
+            [ ] client.js
+        [ ] vendors
+            [ ] JQ
+        [ ] index.html
+ [ ] .gitignore
+    .DS_Store
+    package-lock.json
+    node_modules/
+    logs
+    *.log
+    npm-debug.log*
+    yarn-debug.log*
+    yarn-error.log*
+
+
+
+
 HTML WIREFRAME
     [ ] Inputs
         [ ] task name
