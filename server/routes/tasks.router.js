@@ -43,10 +43,30 @@ router.post("/", (req, res) => {
         res.sendStatus(201);
       })
       .catch((err) => {
-        console.log(`Error making query ${queryText}, ${values}`, err);
+        console.log(`Error making query ${queryText}, ${values}:`, err);
         res.sendStatus(500);
       });
   }
+});
+
+// '/tasks/:id' DELETE request handler
+router.delete("/:id", (req, res) => {
+  let id = req.params.id;
+  console.log("DELETE request at", req.url);
+  console.log("id:", id);
+  let queryText = `
+    DELETE FROM "tasklist"
+    WHERE "id" = $1;`;
+  let values = [id];
+  pool
+    .query(queryText, values)
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`Error making query ${queryText}, ${values}:`, err);
+      res.sendStatus(500);
+    });
 });
 
 // export the router for server
