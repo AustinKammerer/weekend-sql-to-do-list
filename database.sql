@@ -1,8 +1,8 @@
 CREATE TABLE "tasklist"
-    "id" SERIAL PRIMARY KEY
+    ("id" SERIAL PRIMARY KEY
     "task" VARCHAR(255) NOT NULL,
     "is_complete" BOOLEAN DEFAULT false,
-    "time_comleted" TIMESTAMP;
+    "time_comleted" TIMESTAMP);
 
 
 -- trigger for time_completed found on https://stackoverflow.com/questions/1035980/update-timestamp-when-row-is-updated-in-postgresql
