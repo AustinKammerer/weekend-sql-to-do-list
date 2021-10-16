@@ -31,26 +31,28 @@ FILE SYSTEM SETUP
 
 HTML WIREFRAME
     [ ] Inputs
-        [ ] task name
-        [ ] task notes
+        [x] task name
         [ ] date/time completed (only appears when marking complete)
-    [ ] Submit Button
+    [x] Submit Button
             
 
-DATABASE todo-list
-    [ ] table - "todos"
+DATABASE sql-todo-list
+    [x] table - "tasklist"
     [ ] columns
-        [ ] task
-        [ ] notes
-        [ ] is_complete
-        [ ] date_completed
-    [ ] .sql file 
-        [ ] CREATE
-        [ ] INSERT INTO ... VALUES
+        [x] id SERIAL
+        [x] task
+        [x] is_complete
+        [x] date_completed
+    [x] .sql file 
+        [x] CREATE
+        [x] INSERT INTO ... VALUES (for reference)
 
 BACK END 
     [ ] server
-        [ ] import express
+        [x] import express
+            [x] set up app
+            [x] PORT 5000
+            [x] app.listen
         [ ] import body-parser
         [ ] import router
     [ ] pool module
@@ -83,7 +85,7 @@ FRONT END
         [ ] and send them to server via POST
     [ ] GET request function '/tasks'
     [ ] POST request function '/tasks'
-        [ ] data: {name, notes, isComplete: false} (some values can be null in DB)
+        [ ] data: {name, isComplete: false} (some values can be null in DB)
         [ ] clear inputs
     [ ] DELETE request function '/tasks/:id'
     [ ] PUT request function '/tasks/:id'
