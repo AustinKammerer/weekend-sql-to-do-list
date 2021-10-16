@@ -10,8 +10,7 @@ router.get("/", (req, res) => {
   console.log("GET request at", req.url);
   let queryText = `
     SELECT * FROM "tasklist"
-    ORDER BY "id";
-    `;
+    ORDER BY "id";`;
   pool
     .query(queryText)
     .then((result) => {
@@ -19,9 +18,35 @@ router.get("/", (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log("error getting results from database:", err);
+      console.log(`Error making query ${queryText}`, err);
       res.sendStatus(500);
     });
+});
+
+// '/tasks' POST request handler
+router.post("/", (req, res) => {
+  let newTask = req.body;
+  console.log("POST request at", req.url);
+  console.log("request:", newTask);
+  let queryText = `
+    INSERT INTO "tasklist" ("task")
+    VALUES ($1);`;
+  let values = [];
+  if (!newTask.task) {
+    console.log(newTask.task);
+    res.status(400).send({ msg: "Please Enter a Task" });
+  } else {
+    values = [newTask.task];
+    pool
+      .query(queryText, values)
+      .then((result) => {
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log(`Error making query ${queryText}, ${values}`, err);
+        res.sendStatus(500);
+      });
+  }
 });
 
 // export the router for server

@@ -11,11 +11,28 @@ function addClickHandlers() {
   $("#submitBtn").on("click", handleSubmit);
 }
 
+function addTask(newTask) {
+  $.ajax({
+    method: "POST",
+    url: "/tasks",
+    data: newTask,
+  })
+    .then((res) => {
+      console.log("Database UPDATE success");
+      refreshTasks();
+    })
+    .catch((err) => {
+      console.log("Database/Server error", err);
+      alert("Unable to add task at this time. Please try again later.");
+    });
+}
+
 function handleSubmit() {
-  let task = {
+  let newTask = {
     task: $("#taskIn").val(),
   };
-  console.log(task);
+  console.log(newTask);
+  addTask(newTask);
 }
 
 function refreshTasks() {
@@ -56,7 +73,6 @@ function renderTasks(taskList) {
             </div>
         </div>`);
     taskEntry.data("id", task.id);
-    console.log(taskEntry.data("id"));
     $("#taskListContainer").append(taskEntry);
   }
 }
