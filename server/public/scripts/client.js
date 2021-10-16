@@ -10,6 +10,7 @@ function addClickHandlers() {
   // click listeners go here
   $("#submitBtn").on("click", handleSubmit);
   $("#taskListContainer").on("click", ".deleteBtn", deleteTask);
+  $("#taskListContainer").on("click", ".markCompleteBtn", updateTask);
 }
 
 function addTask(newTask) {
@@ -71,10 +72,15 @@ function refreshTasks() {
 function renderTasks(taskList) {
   $("#taskIn").val("");
   $("#taskListContainer").empty();
-  let timeCompleted = ``;
+  let markCompleteBtn = `<button class="markCompleteBtn btn btn-outline-success">Complete</button>`;
   for (let task of taskList) {
+    let timeCompleted = ``;
     if (task.is_complete) {
-      timeCompleted = task.task_completed;
+      timeCompleted = `Completed: ${task.time_completed}`;
+    }
+    let updateBtn = ``;
+    if (!task.is_complete) {
+      updateBtn = markCompleteBtn;
     }
     let taskEntry = $(`
       <div class="row">
@@ -85,7 +91,7 @@ function renderTasks(taskList) {
           <p class="timeCompletedOut">${timeCompleted}</p>
         </div>
         <div class="col">
-          <button class="markCompleteBtn btn btn-outline-success">Complete</button>
+          ${updateBtn}
         </div>
         <div class="col">
           <button class="deleteBtn btn btn-outline-danger">Delete</button>
@@ -94,4 +100,20 @@ function renderTasks(taskList) {
     taskEntry.data("id", task.id);
     $("#taskListContainer").append(taskEntry);
   }
+}
+
+function updateTask() {
+  let id = $(this).closest(".row").data("id");
+  $.ajax({
+    method: "PUT",
+    url: `tasks/${id}`,
+  })
+    .then((res) => {
+      console.log("Database UPDATE Success");
+      refreshTasks();
+    })
+    .catch((err) => {
+      console.log("Database/Server error", err);
+      alert("Unable to update task at this time. Please try again later.");
+    });
 }
