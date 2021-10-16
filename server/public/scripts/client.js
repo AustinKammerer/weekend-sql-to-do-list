@@ -9,6 +9,7 @@ function onPageLoad() {
 function addClickHandlers() {
   // click listeners go here
   $("#submitBtn").on("click", handleSubmit);
+  $("#taskListContainer").on("click", ".deleteBtn", deleteTask);
 }
 
 function addTask(newTask) {
@@ -18,12 +19,29 @@ function addTask(newTask) {
     data: newTask,
   })
     .then((res) => {
-      console.log("Database UPDATE success");
+      console.log("Database UPDATE Success");
       refreshTasks();
     })
     .catch((err) => {
       console.log("Database/Server error", err);
       alert("Unable to add task at this time. Please try again later.");
+    });
+}
+
+function deleteTask() {
+  let id = $(this).closest(".row").data("id");
+  console.log(id);
+  $.ajax({
+    method: "DELETE",
+    url: `/tasks/${id}`,
+  })
+    .then((res) => {
+      console.log("Database DELETE Success");
+      refreshTasks();
+    })
+    .catch((err) => {
+      console.log("Database/Server error", err);
+      alert("Unable to delete task at this time. Please try again later.");
     });
 }
 
@@ -41,7 +59,8 @@ function refreshTasks() {
     url: "/tasks",
   })
     .then((res) => {
-      console.log(res);
+      console.log("Database SELECT Success");
+      console.log("response:", res);
       renderTasks(res);
     })
     .catch((err) => {
@@ -58,20 +77,20 @@ function renderTasks(taskList) {
       timeCompleted = task.task_completed;
     }
     let taskEntry = $(`
-        <div class="row">
-            <div class="col">
-                <p class="taskOut">${task.task}</p>
-            </div>
-            <div class="col">
-                <p class="timeCompletedOut">${timeCompleted}</p>
-            </div>
-            <div class="col">
-                <button class="markCompleteBtn btn btn-outline-success">Complete</button>
-            </div>
-            <div class="col">
-                <button class="deleteBtn btn btn-outline-danger">Delete</button>
-            </div>
-        </div>`);
+      <div class="row">
+        <div class="col">
+          <p class="taskOut">${task.task}</p>
+        </div>
+        <div class="col">
+          <p class="timeCompletedOut">${timeCompleted}</p>
+        </div>
+        <div class="col">
+          <button class="markCompleteBtn btn btn-outline-success">Complete</button>
+        </div>
+        <div class="col">
+          <button class="deleteBtn btn btn-outline-danger">Delete</button>
+        </div>
+      </div>`);
     taskEntry.data("id", task.id);
     $("#taskListContainer").append(taskEntry);
   }
