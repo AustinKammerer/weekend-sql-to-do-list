@@ -30,7 +30,7 @@ FILE SYSTEM SETUP
 
 
 HTML WIREFRAME
-    [ ] Inputs
+    [x] Inputs
         [x] task name
         [ ] date/time completed (only appears when marking complete)
     [x] Submit Button
@@ -38,11 +38,12 @@ HTML WIREFRAME
 
 DATABASE sql-todo-list
     [x] table - "tasklist"
-    [ ] columns
+    [x] columns
         [x] id SERIAL
         [x] task
         [x] is_complete
         [x] date_completed
+            [x] trigger for when task is marked complete
     [x] .sql file 
         [x] CREATE
         [x] INSERT INTO ... VALUES (for reference)
@@ -53,10 +54,14 @@ BACK END
             [x] set up app
             [x] PORT 5000
             [x] app.listen
-        [ ] import body-parser
-        [ ] import router
-    [ ] pool module
-        [ ] import pg
+        [x] import body-parser
+            [x] app.use
+        [x] import router
+            [x] app.use
+    [x] pool module
+        [x] import pg
+        [x] pg config
+        [x] new pg.Pool()
     [ ] routes folder
         [ ] tasks.router ('/tasks)
             [ ] import pg
