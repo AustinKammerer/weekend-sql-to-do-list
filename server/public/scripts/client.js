@@ -118,10 +118,16 @@ function renderTasks(taskList) {
 function updateTask() {
   let id = $(this).closest("li").data("id");
   let status = $(this).closest("li").data("complete");
+  if (status) {
+    console.log(status);
+  } else if (!status) {
+    console.log("hello");
+  }
+  console.log(status);
   $.ajax({
     method: "PUT",
     url: `tasks/${id}`,
-    data: { complete: status },
+    data: { currentIsComplete: status },
   })
     .then((res) => {
       console.log("Database UPDATE Success");

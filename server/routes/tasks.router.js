@@ -14,7 +14,6 @@ router.get("/", (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      console.log(result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
@@ -71,12 +70,22 @@ router.delete("/:id", (req, res) => {
 // '/tasks/:id' PUT request handler
 router.put("/:id", (req, res) => {
   let id = req.params.id;
+  let currentIsComplete = req.body.currentIsComplete === "true";
+  console.log(currentIsComplete);
+  let newIsComplete = true;
+  if (currentIsComplete === true) {
+    newIsComplete = false;
+  }
+  // if (currentIsComplete === false) {
+  //   newIsComplete = true;
+  // }
   console.log(`PUT request at ${req.baseUrl}${req.url}`);
+  console.log(newIsComplete);
   let queryText = `
     UPDATE "tasklist"
-    SET "is_complete" = TRUE
-    WHERE "id" = $1;`;
-  let values = [id];
+    SET "is_complete" = $1
+    WHERE "id" = $2;`;
+  let values = [newIsComplete, id];
   pool
     .query(queryText, values)
     .then((result) => {
