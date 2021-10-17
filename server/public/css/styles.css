@@ -6,6 +6,19 @@ body {
   width: 100%;
   background: linear-gradient(197deg, #052a71 13%, rgba(179, 61, 155, 1) 100%);
 }
+#container {
+  max-width: 540px;
+}
+h1 {
+  color: white;
+}
+
+.input-group-text {
+  background-color: rgba(255, 255, 255, 0);
+  color: #e00cb6;
+  border: 1px solid #e00cb6;
+  cursor: default;
+}
 
 .complete {
   opacity: 0.5;
@@ -31,17 +44,6 @@ body {
   color: #fff;
 }
 
-.form-check-input {
-  font-size: 1.5rem;
-}
-
-.input-group-text {
-  background-color: rgba(255, 255, 255, 0);
-  color: #e00cb6;
-  border: 1px solid #e00cb6;
-  cursor: default;
-}
-
 .form-control {
   border: 1px solid rgba(224, 12, 182);
   color: #e00cb6;
@@ -63,6 +65,7 @@ body {
 .form-check-input {
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #00eeff;
+  font-size: 1.5rem;
 }
 .form-check-input:hover {
   cursor: pointer;
