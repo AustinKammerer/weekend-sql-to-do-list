@@ -83,7 +83,6 @@ function renderTasks(taskList) {
     let timeEntry = ``;
     if (task.is_complete) {
       timeEntry = `<p class="m-0 time-holder">Completed: <span class="time-out">${timeCompleted}</span></p>`;
-      // console.log(formatTimestamp(task.time_completed));
     }
     let taskEntry = $(`
       <li class="mb-1 p-2">
@@ -110,7 +109,6 @@ function renderTasks(taskList) {
     } else if (!task.is_complete) {
       taskEntry.removeClass("complete");
     }
-    // console.log(taskEntry.data("complete"));
     $("#taskListContainer").append(taskEntry);
   }
 }
@@ -118,12 +116,6 @@ function renderTasks(taskList) {
 function updateTask() {
   let id = $(this).closest("li").data("id");
   let status = $(this).closest("li").data("complete");
-  if (status) {
-    console.log(status);
-  } else if (!status) {
-    console.log("hello");
-  }
-  console.log(status);
   $.ajax({
     method: "PUT",
     url: `tasks/${id}`,
