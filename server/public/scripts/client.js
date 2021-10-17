@@ -87,14 +87,12 @@ function renderTasks(taskList) {
     // } else if (task.is_complete) {
     //   updateBtn = markNotCompleteBtn;
     // }
-    let timeCompleted = ``;
+    let timeCompleted = formatTimestamp(task.time_completed);
+    let timeEntry = ``;
     if (task.is_complete) {
-      timeCompleted = `<p class="m-0">${formatTimestamp(
-        task.time_completed
-      )}</p>`;
+      timeEntry = `<p class="m-0 time-holder">Completed: <span class="time-out">${timeCompleted}</span></p>`;
       // console.log(formatTimestamp(task.time_completed));
     }
-
     let taskEntry = $(`
       <li class="mb-1 p-2">
         <div class="row">
@@ -102,10 +100,10 @@ function renderTasks(taskList) {
             <input class="updateBtn form-check-input m-0" type="checkbox" value="">
           </div>
           <div class="col align-self-center ps-0">
-            <p class="m-0">${task.task}</p>
+            <p class="m-0 task-out">${task.task}</p>
           </div>
-          <div class="col align-self-center ps-0">
-            ${timeCompleted}
+          <div class="col-auto align-self-center ps-0">
+            ${timeEntry}
           </div>
           <div class="col-auto">
             <button class="deleteBtn btn btn-outline-danger py-0 px-1"><i class="bi bi-x-lg"></i></button>
