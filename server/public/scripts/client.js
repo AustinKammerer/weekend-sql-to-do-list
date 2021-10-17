@@ -78,15 +78,7 @@ function refreshTasks() {
 function renderTasks(taskList) {
   $("#taskIn").val("");
   $("#taskListContainer").empty();
-  // let markCompleteBtn = `<button class="markCompleteBtn btn btn-success p-0"><i class="bi bi-square"></i></button>`;
-  // let markNotCompleteBtn = `<button class="markCompleteBtn btn btn-success p-0"><i class="bi bi-check2-square"></i></button>`;
   for (let task of taskList) {
-    // let updateBtn = ``;
-    // if (!task.is_complete) {
-    //   updateBtn = markCompleteBtn;
-    // } else if (task.is_complete) {
-    //   updateBtn = markNotCompleteBtn;
-    // }
     let timeCompleted = formatTimestamp(task.time_completed);
     let timeEntry = ``;
     if (task.is_complete) {
