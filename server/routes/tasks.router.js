@@ -91,5 +91,24 @@ router.put("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// '/tasks?' query GET handler
+router.get("/sort", (req, res) => {
+  console.log(req.query);
+  let category = req.query.category;
+  let order = req.query.order;
+  let queryText = ``;
+  switch (category) {
+    case "task":
+      queryText = `SELECT * FROM "tasklist" ORDER BY "task"`;
+      if (order === "DEC") {
+        queryText += `DESC`;
+      }
+      break;
+    case "time":
+      queryText = `SELECT * FROM "tasklist" ORDER BY "time_completed"`;
+  }
+});
+
 // export the router for server
 module.exports = router;
