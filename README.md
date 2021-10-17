@@ -5,8 +5,11 @@ Weekend SQL To-Do List
 ## Description
 
 Duration: Weekend (Two Days)
+
 This is a simple full-stack to-do list implementation. The objective is to take a user input task and store it in a (local) database and subsequently display it on the DOM.
+
 On the front-end, new tasks are requested with the POST method, and tasks are displayed using a GET request. Tasks may also be marked complete via a PUT request and deleted via DELETE request.
+
 The server takes these requests and uses pg to query the database with the appropriate CRUD operations.
 
 ### Prequisites
@@ -16,7 +19,7 @@ The server takes these requests and uses pg to query the database with the appro
 
 ## Installation
 
-1. Create a database named `your database name`,
+1. Create a database named `your-database-name`,
 2. The queries in the `database.sql` file are set up to create the necessary table, functions, and triggers to allow the application to run correctly. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed.
 3. Open up your editor and run an `npm install` to install the dependencies
 4. Run `npm start` in your terminal to start the server
@@ -33,8 +36,9 @@ The server takes these requests and uses pg to query the database with the appro
 
 - node.js
 - express.js
-- PostgreSQL
+- Postgres
 - jQuery
+- Bootstrap
 
 ## Acknowledgement
 
