@@ -82,7 +82,7 @@ function renderTasks(taskList) {
     //   updateBtn = markNotCompleteBtn;
     // }
     let taskEntry = $(`
-      <li class="list-group-item mb-1 p-2">
+      <li class="mb-1 p-2">
         <div class="row">
           <div class="col-auto align-self-center">
             <input class="updateBtn form-check-input m-0" type="checkbox" value="">

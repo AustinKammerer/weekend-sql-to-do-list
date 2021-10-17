@@ -2,8 +2,9 @@ html {
   height: 100%;
 }
 body {
+  cursor: default;
   width: 100%;
-  background: linear-gradient(197deg, #244b96 0%, #b33d9b 100%);
+  background: linear-gradient(197deg, #052a71 13%, rgba(179, 61, 155, 1) 100%);
 }
 
 /* #taskListContainer .row {
@@ -16,6 +17,7 @@ body {
 .complete {
   opacity: 0.5;
   transform: scale(0.96);
+  text-decoration: line-through;
 }
 
 /* .markCompleteBtn {
@@ -27,14 +29,52 @@ body {
   width: 100%;
 } */
 
-.bi-x-square-fill {
+/* .bi-plus-lg {
   font-size: 1.5rem;
-}
+} */
 
-li {
+#taskListContainer li {
   width: 100%;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 255, 255, 0);
+  list-style: none;
+  box-sizing: border-box;
+  border: 1px solid #00eeff;
+  color: #fff;
 }
 
 .form-check-input {
   font-size: 1.5rem;
+}
+
+.input-group-text {
+  background-color: rgba(255, 255, 255, 0);
+  color: #e00cb6;
+  border: 1px solid #e00cb6;
+  cursor: default;
+}
+
+.form-control {
+  border: 1px solid rgba(224, 12, 182);
+  color: #e00cb6;
+  background-color: rgba(255, 255, 255, 0);
+}
+.form-control:focus {
+  border: 1px solid rgba(224, 12, 182);
+  box-shadow: 0 0 0 0.25rem rgba(224, 12, 182, 0.25);
+  color: #e00cb6;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.form-check-input {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #00eeff;
+}
+.form-check-input:hover {
+  cursor: pointer;
+}
+.form-check-input:checked[type="checkbox"] {
+  background-color: #00eeff;
+  border-color: #00eeff;
+  background-image: url("data:image/svg+xml,<svg viewBox='0 0 16 16' fill='%23052a71' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z' clip-rule='evenodd'/></svg>");
 }
