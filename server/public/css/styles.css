@@ -1,0 +1,40 @@
+html {
+  height: 100%;
+}
+body {
+  width: 100%;
+  background: linear-gradient(197deg, #244b96 0%, #b33d9b 100%);
+}
+
+/* #taskListContainer .row {
+  background-color: white;
+  opacity: 0.75;
+} */
+/* #taskListContainer p {
+   font-size: 1.5rem; 
+} */
+.complete {
+  opacity: 0.5;
+  transform: scale(0.96);
+}
+
+/* .markCompleteBtn {
+  height: 100%;
+  width: 100%;
+}
+.markNotCompleteBtn {
+  height: 100%;
+  width: 100%;
+} */
+
+.bi-x-square-fill {
+  font-size: 1.5rem;
+}
+
+li {
+  width: 100%;
+}
+
+.form-check-input {
+  font-size: 1.5rem;
+}

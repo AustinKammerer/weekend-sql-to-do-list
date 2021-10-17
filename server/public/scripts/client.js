@@ -10,7 +10,7 @@ function addClickHandlers() {
   // click listeners go here
   $("#submitBtn").on("click", handleSubmit);
   $("#taskListContainer").on("click", ".deleteBtn", deleteTask);
-  $("#taskListContainer").on("click", ".markCompleteBtn", updateTask);
+  $("#taskListContainer").on("click", ".updateBtn", updateTask);
 }
 
 function addTask(newTask) {
@@ -30,7 +30,7 @@ function addTask(newTask) {
 }
 
 function deleteTask() {
-  let id = $(this).closest(".row").data("id");
+  let id = $(this).closest("li").data("id");
   console.log(id);
   $.ajax({
     method: "DELETE",
@@ -72,38 +72,42 @@ function refreshTasks() {
 function renderTasks(taskList) {
   $("#taskIn").val("");
   $("#taskListContainer").empty();
-  let markCompleteBtn = `<button class="markCompleteBtn btn btn-outline-success">Complete</button>`;
+  // let markCompleteBtn = `<button class="markCompleteBtn btn btn-success p-0"><i class="bi bi-square"></i></button>`;
+  // let markNotCompleteBtn = `<button class="markCompleteBtn btn btn-success p-0"><i class="bi bi-check2-square"></i></button>`;
   for (let task of taskList) {
-    let timeCompleted = ``;
-    if (task.is_complete) {
-      timeCompleted = `Completed: ${task.time_completed}`;
-    }
-    let updateBtn = ``;
-    if (!task.is_complete) {
-      updateBtn = markCompleteBtn;
-    }
+    // let updateBtn = ``;
+    // if (!task.is_complete) {
+    //   updateBtn = markCompleteBtn;
+    // } else if (task.is_complete) {
+    //   updateBtn = markNotCompleteBtn;
+    // }
     let taskEntry = $(`
-      <div class="row">
-        <div class="col">
-          <p class="taskOut">${task.task}</p>
+      <li class="list-group-item mb-1 p-2">
+        <div class="row">
+          <div class="col-auto align-self-center">
+            <input class="updateBtn form-check-input m-0" type="checkbox" value="">
+          </div>
+          <div class="col align-self-center ps-0">
+            <p class="m-0">${task.task}</p>
+          </div>
+          <div class="col-auto">
+            <button class="deleteBtn btn btn-outline-danger py-0 px-1"><i class="bi bi-x-lg"></i></button>
+          </div>
         </div>
-        <div class="col">
-          <p class="timeCompletedOut">${timeCompleted}</p>
-        </div>
-        <div class="col">
-          ${updateBtn}
-        </div>
-        <div class="col">
-          <button class="deleteBtn btn btn-outline-danger">Delete</button>
-        </div>
-      </div>`);
+        </li>`);
     taskEntry.data("id", task.id);
+    if (task.is_complete) {
+      taskEntry.addClass("complete");
+      taskEntry.find("input[type=checkbox]").prop("checked", true);
+    } else if (!task.is_complete) {
+      taskEntry.removeClass("complete");
+    }
     $("#taskListContainer").append(taskEntry);
   }
 }
 
 function updateTask() {
-  let id = $(this).closest(".row").data("id");
+  let id = $(this).closest("li").data("id");
   $.ajax({
     method: "PUT",
     url: `tasks/${id}`,
