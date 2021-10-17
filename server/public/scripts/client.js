@@ -12,6 +12,7 @@ function addClickHandlers() {
   $("#submitBtn").on("click", handleSubmit);
   $("#taskListContainer").on("click", ".deleteBtn", deleteTask);
   $("#taskListContainer").on("click", ".updateBtn", updateTask);
+  $("#sortSelect").on("change", sortTasks);
 }
 
 function addTask(newTask) {
@@ -113,12 +114,33 @@ function renderTasks(taskList) {
   }
 }
 
+function sortTasks() {
+  let selectVal = $(this).val();
+  console.log(selectVal);
+  let category = selectVal.slice(0, -4);
+  console.log(category);
+  let order = selectVal.slice(-3);
+  console.log(order);
+  $.ajax({
+    method: "GET",
+    url: `/tasks?category=${category}&order=${order}`,
+  })
+    .then((res) => {
+      console.log("Database ORDER BY succes");
+      console.log("response:", res);
+      renderTasks(res);
+    })
+    .catch((err) => {
+      console.log("Error connecting to server:", err);
+    });
+}
+
 function updateTask() {
   let id = $(this).closest("li").data("id");
   let status = $(this).closest("li").data("complete");
   $.ajax({
     method: "PUT",
-    url: `tasks/${id}`,
+    url: `/tasks/${id}`,
     data: { currentIsComplete: status },
   })
     .then((res) => {
