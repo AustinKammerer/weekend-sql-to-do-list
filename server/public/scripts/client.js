@@ -103,21 +103,25 @@ function renderTasks(taskList) {
         </div>
         </li>`);
     taskEntry.data("id", task.id);
+    taskEntry.data("complete", task.is_complete);
     if (task.is_complete) {
       taskEntry.addClass("complete");
       taskEntry.find("input[type=checkbox]").prop("checked", true);
     } else if (!task.is_complete) {
       taskEntry.removeClass("complete");
     }
+    // console.log(taskEntry.data("complete"));
     $("#taskListContainer").append(taskEntry);
   }
 }
 
 function updateTask() {
   let id = $(this).closest("li").data("id");
+  let status = $(this).closest("li").data("complete");
   $.ajax({
     method: "PUT",
     url: `tasks/${id}`,
+    data: { complete: status },
   })
     .then((res) => {
       console.log("Database UPDATE Success");
