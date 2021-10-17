@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   console.log(`GET request at ${req.baseUrl}${req.url}`);
   let queryText = `
     SELECT * FROM "tasklist"
-    ORDER BY "id";`;
+    ORDER BY "id" DESC;`;
   pool
     .query(queryText)
     .then((result) => {

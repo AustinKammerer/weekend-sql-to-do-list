@@ -69,6 +69,7 @@ function refreshTasks() {
     .then((res) => {
       console.log("Database SELECT Success");
       console.log("response:", res);
+      $("#sortSelect").val("null");
       renderTasks(res);
     })
     .catch((err) => {
