@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   console.log(`GET request at ${req.baseUrl}${req.url}`);
   let queryText = `
     SELECT * FROM "tasklist"
-    ORDER BY "id";`;
+    ORDER BY "id" DESC;`;
   pool
     .query(queryText)
     .then((result) => {
@@ -91,5 +91,42 @@ router.put("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// '/tasks?' query GET handler
+router.get("/sort", (req, res) => {
+  console.log(req.query);
+  let category = req.query.category;
+  let order = req.query.order;
+  let queryText = ``;
+  switch (category) {
+    case "task":
+      queryText = `SELECT * FROM "tasklist" ORDER BY "task"`;
+      if (order === "DEC") {
+        queryText += `DESC`;
+      }
+      break;
+    case "time":
+      queryText = `SELECT * FROM "tasklist" ORDER BY "is_complete" DESC, "time_completed"`;
+      if (order === "DEC") {
+        queryText += `DESC`;
+      }
+      break;
+    case "complete":
+      queryText = `SELECT * FROM "tasklist" ORDER BY "is_complete"`;
+      break;
+    default:
+      res.status(400).send({ msg: "Invalid Query!" });
+  }
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log(`Error making query ${queryText}`, err);
+      res.sendStatus(500);
+    });
+});
+
 // export the router for server
 module.exports = router;
