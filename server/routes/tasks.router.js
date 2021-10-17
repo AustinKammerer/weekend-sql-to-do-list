@@ -71,16 +71,11 @@ router.delete("/:id", (req, res) => {
 router.put("/:id", (req, res) => {
   let id = req.params.id;
   let currentIsComplete = req.body.currentIsComplete === "true";
-  console.log(currentIsComplete);
   let newIsComplete = true;
   if (currentIsComplete === true) {
     newIsComplete = false;
   }
-  // if (currentIsComplete === false) {
-  //   newIsComplete = true;
-  // }
   console.log(`PUT request at ${req.baseUrl}${req.url}`);
-  console.log(newIsComplete);
   let queryText = `
     UPDATE "tasklist"
     SET "is_complete" = $1
