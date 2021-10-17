@@ -7,31 +7,19 @@ body {
   background: linear-gradient(197deg, #052a71 13%, rgba(179, 61, 155, 1) 100%);
 }
 
-/* #taskListContainer .row {
-  background-color: white;
-  opacity: 0.75;
-} */
-/* #taskListContainer p {
-   font-size: 1.5rem; 
-} */
 .complete {
   opacity: 0.5;
   transform: scale(0.96);
+}
+.complete .task-out {
   text-decoration: line-through;
 }
-
-/* .markCompleteBtn {
-  height: 100%;
-  width: 100%;
+.complete .time-holder {
+  font-size: 0.7rem;
 }
-.markNotCompleteBtn {
-  height: 100%;
-  width: 100%;
-} */
-
-/* .bi-plus-lg {
-  font-size: 1.5rem;
-} */
+.complete .time-out {
+  font-size: 0.9rem;
+}
 
 #taskListContainer li {
   width: 100%;
@@ -77,4 +65,7 @@ body {
   background-color: #00eeff;
   border-color: #00eeff;
   background-image: url("data:image/svg+xml,<svg viewBox='0 0 16 16' fill='%23052a71' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z' clip-rule='evenodd'/></svg>");
+}
+.btn-outline-danger:hover {
+  color: #052a71;
 }

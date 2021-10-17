@@ -1,4 +1,5 @@
 $(onPageLoad);
+const DateTime = luxon.DateTime;
 
 function onPageLoad() {
   console.log("jQ connected");
@@ -46,6 +47,11 @@ function deleteTask() {
     });
 }
 
+function formatTimestamp(timestamp) {
+  let dt = DateTime.fromISO(timestamp, { zone: "cst" });
+  return dt.toLocaleString(DateTime.DATETIME_MED);
+}
+
 function handleSubmit() {
   let newTask = {
     task: $("#taskIn").val(),
@@ -72,15 +78,13 @@ function refreshTasks() {
 function renderTasks(taskList) {
   $("#taskIn").val("");
   $("#taskListContainer").empty();
-  // let markCompleteBtn = `<button class="markCompleteBtn btn btn-success p-0"><i class="bi bi-square"></i></button>`;
-  // let markNotCompleteBtn = `<button class="markCompleteBtn btn btn-success p-0"><i class="bi bi-check2-square"></i></button>`;
   for (let task of taskList) {
-    // let updateBtn = ``;
-    // if (!task.is_complete) {
-    //   updateBtn = markCompleteBtn;
-    // } else if (task.is_complete) {
-    //   updateBtn = markNotCompleteBtn;
-    // }
+    let timeCompleted = formatTimestamp(task.time_completed);
+    let timeEntry = ``;
+    if (task.is_complete) {
+      timeEntry = `<p class="m-0 time-holder">Completed: <span class="time-out">${timeCompleted}</span></p>`;
+      // console.log(formatTimestamp(task.time_completed));
+    }
     let taskEntry = $(`
       <li class="mb-1 p-2">
         <div class="row">
@@ -88,7 +92,10 @@ function renderTasks(taskList) {
             <input class="updateBtn form-check-input m-0" type="checkbox" value="">
           </div>
           <div class="col align-self-center ps-0">
-            <p class="m-0">${task.task}</p>
+            <p class="m-0 task-out">${task.task}</p>
+          </div>
+          <div class="col-auto align-self-center ps-0">
+            ${timeEntry}
           </div>
           <div class="col-auto">
             <button class="deleteBtn btn btn-outline-danger py-0 px-1"><i class="bi bi-x-lg"></i></button>
