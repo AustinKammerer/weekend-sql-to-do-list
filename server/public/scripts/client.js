@@ -123,15 +123,19 @@ function sortTasks() {
   console.log(order);
   $.ajax({
     method: "GET",
-    url: `/tasks?category=${category}&order=${order}`,
+    url: `/tasks/sort?category=${category}&order=${order}`,
   })
     .then((res) => {
-      console.log("Database ORDER BY succes");
+      console.log("Database ORDER BY success");
       console.log("response:", res);
       renderTasks(res);
     })
     .catch((err) => {
-      console.log("Error connecting to server:", err);
+      if (err.status === 400) {
+        alert(err.responseJSON.msg);
+      } else {
+        console.log("Error connecting to server:", err);
+      }
     });
 }
 
