@@ -1,4 +1,5 @@
 $(onPageLoad);
+const DateTime = luxon.DateTime;
 
 function onPageLoad() {
   console.log("jQ connected");
@@ -46,6 +47,11 @@ function deleteTask() {
     });
 }
 
+function formatTimestamp(timestamp) {
+  let dt = DateTime.fromISO(timestamp, { zone: "cst" });
+  return dt.toLocaleString(DateTime.DATETIME_MED);
+}
+
 function handleSubmit() {
   let newTask = {
     task: $("#taskIn").val(),
@@ -81,6 +87,14 @@ function renderTasks(taskList) {
     // } else if (task.is_complete) {
     //   updateBtn = markNotCompleteBtn;
     // }
+    let timeCompleted = ``;
+    if (task.is_complete) {
+      timeCompleted = `<p class="m-0">${formatTimestamp(
+        task.time_completed
+      )}</p>`;
+      // console.log(formatTimestamp(task.time_completed));
+    }
+
     let taskEntry = $(`
       <li class="mb-1 p-2">
         <div class="row">
@@ -89,6 +103,9 @@ function renderTasks(taskList) {
           </div>
           <div class="col align-self-center ps-0">
             <p class="m-0">${task.task}</p>
+          </div>
+          <div class="col align-self-center ps-0">
+            ${timeCompleted}
           </div>
           <div class="col-auto">
             <button class="deleteBtn btn btn-outline-danger py-0 px-1"><i class="bi bi-x-lg"></i></button>
