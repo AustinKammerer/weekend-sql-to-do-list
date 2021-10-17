@@ -12,6 +12,7 @@ function addClickHandlers() {
   $("#submitBtn").on("click", handleSubmit);
   $("#taskListContainer").on("click", ".deleteBtn", deleteTask);
   $("#taskListContainer").on("click", ".updateBtn", updateTask);
+  $("#sortSelect").on("change", sortTasks);
 }
 
 function addTask(newTask) {
@@ -68,6 +69,7 @@ function refreshTasks() {
     .then((res) => {
       console.log("Database SELECT Success");
       console.log("response:", res);
+      $("#sortSelect").val("null");
       renderTasks(res);
     })
     .catch((err) => {
@@ -113,12 +115,37 @@ function renderTasks(taskList) {
   }
 }
 
+function sortTasks() {
+  let selectVal = $(this).val();
+  console.log(selectVal);
+  let category = selectVal.slice(0, -4);
+  console.log(category);
+  let order = selectVal.slice(-3);
+  console.log(order);
+  $.ajax({
+    method: "GET",
+    url: `/tasks/sort?category=${category}&order=${order}`,
+  })
+    .then((res) => {
+      console.log("Database ORDER BY success");
+      console.log("response:", res);
+      renderTasks(res);
+    })
+    .catch((err) => {
+      if (err.status === 400) {
+        alert(err.responseJSON.msg);
+      } else {
+        console.log("Error connecting to server:", err);
+      }
+    });
+}
+
 function updateTask() {
   let id = $(this).closest("li").data("id");
   let status = $(this).closest("li").data("complete");
   $.ajax({
     method: "PUT",
-    url: `tasks/${id}`,
+    url: `/tasks/${id}`,
     data: { currentIsComplete: status },
   })
     .then((res) => {
