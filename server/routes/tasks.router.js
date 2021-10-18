@@ -103,19 +103,19 @@ router.put("/:id", (req, res) => {
 router.get("/sort", (req, res) => {
   // get the category to sort by and the order from the url
   let category = req.query.category;
-  let order = req.query.order;
+  let direction = req.query.direction;
   let queryText = ``;
   // generate the appropriate db query based on the url query string
   switch (category) {
     case "task":
       queryText = `SELECT * FROM "tasklist" ORDER BY "task"`;
-      if (order === "DEC") {
+      if (direction === "DEC") {
         queryText += `DESC`;
       }
       break;
     case "time":
       queryText = `SELECT * FROM "tasklist" ORDER BY "is_complete" DESC, "time_completed"`;
-      if (order === "DEC") {
+      if (direction === "DEC") {
         queryText += `DESC`;
       }
       break;

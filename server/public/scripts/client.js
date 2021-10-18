@@ -15,6 +15,7 @@ function addClickHandlers() {
   $("#sortSelect").on("change", sortTasks);
 }
 
+// function to add a task to the list and database
 function addTask(newTask) {
   $.ajax({
     method: "POST",
@@ -31,6 +32,7 @@ function addTask(newTask) {
     });
 }
 
+// function to delete task from list and database
 function deleteTask() {
   // get the task id from the deleteBtn's parent li (data-id)
   let id = $(this).closest("li").data("id");
@@ -64,6 +66,7 @@ function handleSubmit() {
   addTask(newTask);
 }
 
+// function to GET the task list from the database
 function refreshTasks() {
   $.ajax({
     method: "GET",
@@ -82,6 +85,7 @@ function refreshTasks() {
     });
 }
 
+// function to render the task list to the DOM and attach data
 function renderTasks(taskList) {
   $("#taskIn").val("");
   $("#taskListContainer").empty();
@@ -127,6 +131,7 @@ function renderTasks(taskList) {
   }
 }
 
+// function to sort the list based on the user's selection of category and direction
 function sortTasks() {
   // get the user sorting input
   // each option's value corresponds to its sort-by category and direction
@@ -134,11 +139,11 @@ function sortTasks() {
   // first part of the string is category
   let category = selectVal.slice(0, -4);
   // second part is the direction
-  let order = selectVal.slice(-3);
+  let direction = selectVal.slice(-3);
   // pass these to the server via query params in the url
   $.ajax({
     method: "GET",
-    url: `/tasks/sort?category=${category}&order=${order}`,
+    url: `/tasks/sort?category=${category}&direction=${direction}`,
   })
     .then((res) => {
       console.log("Database ORDER BY success");
@@ -155,6 +160,7 @@ function sortTasks() {
     });
 }
 
+// function to update a task's completion status
 function updateTask() {
   // get the task's id
   let id = $(this).closest("li").data("id");
