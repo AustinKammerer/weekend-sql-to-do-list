@@ -8,6 +8,7 @@ const pool = require("../modules/pool.js");
 // '/tasks' GET request handler
 router.get("/", (req, res) => {
   console.log(`GET request at ${req.baseUrl}${req.url}`);
+  // order by id descending so new task goes on top of the DOM list
   let queryText = `
     SELECT * FROM "tasklist"
     ORDER BY "id" DESC;`;
@@ -31,6 +32,7 @@ router.post("/", (req, res) => {
     INSERT INTO "tasklist" ("task")
     VALUES ($1);`;
   let values = [];
+  // only query the database if a task description is entered
   if (!newTask.task) {
     console.log(newTask.task);
     res.status(400).send({ msg: "Please Enter a Task" });
@@ -50,6 +52,7 @@ router.post("/", (req, res) => {
 
 // '/tasks/:id' DELETE request handler
 router.delete("/:id", (req, res) => {
+  // get the id from the url
   let id = req.params.id;
   console.log(`DELETE request at ${req.baseUrl}${req.url}`);
   let queryText = `
@@ -69,9 +72,13 @@ router.delete("/:id", (req, res) => {
 
 // '/tasks/:id' PUT request handler
 router.put("/:id", (req, res) => {
+  // get the id from the url
   let id = req.params.id;
+  // convert the DOM task entry's completed status to a Boolean
   let currentIsComplete = req.body.currentIsComplete === "true";
   let newIsComplete = true;
+  // flip the truthyness when the checkbox is unchecked
+  // this allows for a task to be marked incomplete after being marked complete
   if (currentIsComplete === true) {
     newIsComplete = false;
   }
@@ -94,10 +101,11 @@ router.put("/:id", (req, res) => {
 
 // '/tasks?' query GET handler
 router.get("/sort", (req, res) => {
-  console.log(req.query);
+  // get the category to sort by and the order from the url
   let category = req.query.category;
   let order = req.query.order;
   let queryText = ``;
+  // generate the appropriate db query based on the url query string
   switch (category) {
     case "task":
       queryText = `SELECT * FROM "tasklist" ORDER BY "task"`;
@@ -114,6 +122,7 @@ router.get("/sort", (req, res) => {
     case "complete":
       queryText = `SELECT * FROM "tasklist" ORDER BY "is_complete"`;
       break;
+    // validation:
     default:
       res.status(400).send({ msg: "Invalid Query!" });
   }

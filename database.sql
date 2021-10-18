@@ -1,3 +1,4 @@
+-- initiate the table
 CREATE TABLE "tasklist"
     ("id" SERIAL PRIMARY KEY,
     "task" VARCHAR(255) NOT NULL,
@@ -5,6 +6,7 @@ CREATE TABLE "tasklist"
     "time_completed" TIMESTAMP WITH TIME ZONE);
 
 -- creates a function that will set the time_completed column in a given row to the current timestamp
+-- this will enable us to get the time that a task is marked as complete
 CREATE OR REPLACE FUNCTION update_time_completed_column()
 RETURNS TRIGGER AS $$
 BEGIN
