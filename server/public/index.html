@@ -2,48 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/vendors/jquery-3.6.0.min.js"></script>
-    <script src="/vendors/luxon.min.js"></script>
-    <script src="/scripts/client.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <title>SQL To-Do List</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/vendors/jquery-3.6.0.min.js"></script>
+  <script src="/vendors/luxon.min.js"></script>
+  <script src="/scripts/client.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>SQL To-Do List</title>
 </head>
 
 <body>
-    <div class="container-sm" id="container">
-        <header class="row">
-            <div class="col">
-                <h1>\ \ \ To \ / Do / / /</h1>
-            </div>
-        </header>
-        <div class="row mb-2">
-            <div class="col-xs-12 col-md-6 input-group">
-                <span class="input-group-text">New Task</span>
-                <input type="text" id="taskIn" class="form-control" placeholder="">
-                <button id="submitBtn" class="btn btn-outline-custom py-0 px-3"><i
-                        class="bi bi-plus-lg fs-2"></i></button>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-auto">
-                <select class="form-select" name="" id="sortSelect">
-                    <option value="null">---Sort By---</option>
-                    <option class="sort-option" value="task-ASC">Task (A-Z)</option>
-                    <option class="sort-option" value="task-DEC">Task (Z-A)</option>
-                    <option class="sort-option" value="complete-ASC">Inomplete</option>
-                    <option class="sort-option" value="time-ASC">Completed (Oldest)</option>
-                    <option class="sort-option" value="time-DEC">Completed (Newest)</option>
-                </select>
-            </div>
-        </div>
-        <ul id="taskListContainer" class="container p-0">
-        </ul>
+  <div class="container-sm" id="container">
+    <header class="row">
+      <div class="col">
+        <h1>\ \ \ To \ / Do / / /</h1>
+      </div>
+    </header>
+    <div class="row mb-2">
+      <div class="col-xs-12 col-md-6 input-group">
+        <span class="input-group-text">New Task</span>
+        <input type="text" id="taskIn" class="form-control" placeholder="">
+        <button id="submitBtn" class="btn btn-outline-custom py-0 px-3"><i class="bi bi-plus-lg fs-2"></i></button>
+      </div>
     </div>
+    <div class="row mb-2">
+      <div class="col-auto">
+        <select class="form-select" name="" id="sortSelect">
+          <option value="null">---Sort By---</option>
+          <option class="sort-option" value="task-ASC">Task (A-Z)</option>
+          <option class="sort-option" value="task-DEC">Task (Z-A)</option>
+          <option class="sort-option" value="complete-ASC">Incomplete</option>
+          <option class="sort-option" value="time-ASC">Completed (Oldest)</option>
+          <option class="sort-option" value="time-DEC">Completed (Newest)</option>
+        </select>
+      </div>
+    </div>
+    <ul id="taskListContainer" class="container p-0">
+    </ul>
+  </div>
 </body>
 
 </html>
