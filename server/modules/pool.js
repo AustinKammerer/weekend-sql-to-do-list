@@ -31,12 +31,4 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-// server terminal logs on connection success/failure
-pool.on("connect", () => {
-  console.log("connected to database");
-});
-pool.on("error", (err) => {
-  console.log("error connecting to database", err);
-});
-
 module.exports = new pg.Pool(config);
