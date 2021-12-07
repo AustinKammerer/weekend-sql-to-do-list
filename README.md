@@ -12,6 +12,14 @@ On the front-end, new tasks are requested with the POST method, and tasks are di
 
 The server takes these requests and uses pg to query the database with the appropriate CRUD operations.
 
+The deployed version of the app may be found [here](https://polar-cove-00340.herokuapp.com/)
+
+## Screenshots
+
+![screenshots/screen1.png](screenshots/screen1.png)
+![screenshots/screen2.png](screenshots/screen2.png)
+![screenshots/screen3.png](screenshots/screen3.png)
+
 ### Prequisites
 
 - [Node.js](https://nodejs.org/en/)
